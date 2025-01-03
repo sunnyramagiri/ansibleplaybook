@@ -1,0 +1,21 @@
+---
+- name: Install git ,create an empty folder and clone a remote git repository
+  hosts: all
+  tasks:
+    - name: Install git
+      apt:
+        name: git
+        state: present
+        update_cache: yes
+    - name: Create an empty folder
+      file:
+        name: /tmp/folder2
+        state: directory
+    - name: Clone the remote git repository
+      git:
+        repo: https://github.com/IntelliqDevops/maven.git
+        dest: /tmp/folder2
+
+...
+
+

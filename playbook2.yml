@@ -1,0 +1,14 @@
+---
+- name: Create directory and copy files into it
+  hosts: all
+  tasks:
+    - name: Create directory
+      file:
+        name: /tmp/folder1
+        state: directory
+    - name: copy a passwd file
+      copy:
+        src: /etc/passwd
+        dest: /tmp/folder1
+
+...
