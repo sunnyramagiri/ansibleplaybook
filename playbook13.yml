@@ -1,0 +1,14 @@
+---
+- name: multiple time installing
+  hosts: all
+  tasks:
+    - name: install s/w
+      apt:
+        name: "{{item}}"
+        state: absent
+        update_cache: no
+      with_items:
+        - tree
+        - git
+        - maven
+...
