@@ -1,0 +1,38 @@
+---
+- name: installing tomcat10 and tomcat10-admin
+  hosts: all
+  tasks:
+    - name: install tomcat10
+      apt:
+        name: tomcat10
+        state: present
+        update_cache: yes
+    - name: insatll tomcat10-admin
+      apt:
+        name: tomcat10-admin
+        state: present
+    - name: copy modified of tomcat-users.xml file
+      copy:
+        src: tomcat-users.xml
+        dest: /etc/tomcat10
+    - name: replace the all servers
+      replace:
+        regexp: 8080
+        replace: 9090
+        path: /etc/tomcat10/server.xml
+    - name: restarting all the servers
+      service:
+        name: tomcat10
+        state: restarted
+    - name: pause for 30 sec
+      pause:
+        minutes: 1
+    - name: uri tomcat sserver1
+      uri:
+        url: http://172.31.5.244:9090
+        status_code: 200
+    - name: uri tomcat to server2
+      uri:
+        url: http://172.31.2.134:9090
+        status_code: 200
+...

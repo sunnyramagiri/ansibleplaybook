@@ -1,0 +1,10 @@
+---
+- name: implementing globle scope verables
+  hosts: all
+  tasks:
+    - name: install, uninstall s/w apps
+      apt:
+        name: "{{a}}"
+        state: "{{b}}"
+        update_cache: "{{c}}"
+...

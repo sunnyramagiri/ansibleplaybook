@@ -1,0 +1,28 @@
+---
+- name: creating apache2
+  hosts: all
+  tasks:
+    - name: install apache2
+      apt:
+        name: apache2
+        state: present
+        update_cache: yes
+    - name: edit the indix,html file
+      copy:
+        content: "welcome to sunny"
+        dest: /var/www/html/index.html
+    - name: restart apache2
+      service:
+        name: apache2
+        state: restarted
+    - name: check apache2 response on server1
+      uri:
+        url: http://172.31.2.134
+        status_code: 200
+    - name: check apache2
+      uri:
+        url: http://172.31.5.244
+        status_code: 200
+          
+...
+
