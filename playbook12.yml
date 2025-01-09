@@ -1,0 +1,8 @@
+---
+- name: host scope varabiles
+  hosts: 172.31.13.175
+  tasks:
+    - name: create user
+      user:
+        name: "{{a}}"
+        password: "{{b}}"

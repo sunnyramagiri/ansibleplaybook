@@ -1,0 +1,10 @@
+---
+- name: implemting the host play scope
+  hosts: sunny
+  tasks:
+    - name: install firewall
+      apt:
+        name: "{{a}}"
+        state: "{{b}}"
+        update_cache: "{{c}}"
+...
