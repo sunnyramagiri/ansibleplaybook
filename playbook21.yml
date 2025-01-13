@@ -1,0 +1,20 @@
+---
+- name: error handling on the  servers
+  hosts: node1
+  tasks:
+    - block:
+      - name: uninstall git on node1
+        apt:
+          name: "{{item.a}}"
+          state: "{{item.b}}"
+          update_cache: yes
+        with_items:
+          - {a: git,b: absent}
+- name: on node2
+  hosts: node2
+  tasks:
+     - name: uninstall tree
+       yum:
+         name: tree
+         state: absent
+...

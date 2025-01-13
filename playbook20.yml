@@ -1,0 +1,25 @@
+--- 
+- name: install git on node1 server
+  hosts: node1
+  gather_facts: false
+  tasks:
+    - name: install git on node1
+      apt:
+        name: git
+        state: present
+        update_cache: yes
+- name: insatall git on redhat servers
+  hosts: node2
+  tasks:
+    - name: insatll got on yum 
+      yum:
+        name: git
+        state: present
+        update_cache: yes
+    - name: create a users name apdn password
+      user:
+        name: sunny
+        password: sarik
+        uid: 1234
+        comment: "sunny super hero"
+...
