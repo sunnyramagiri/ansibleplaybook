@@ -1,0 +1,13 @@
+---
+- name: implementing when condiuction
+  hosts: all
+  vars:
+    - a: 10
+  tasks:
+    - name: create the user 
+      user:
+        name: dad
+        password: dad1
+        uid: 92461
+      when: a == 20
+
