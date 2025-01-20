@@ -1,0 +1,9 @@
+---
+- name: Example Playbook
+  hosts: all
+  tasks:
+    - name: Print playbook ID
+      debug:
+        msg: "hello sunny"
+      tags:
+        - playbook_id: 33445-sunny

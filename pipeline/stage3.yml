@@ -1,0 +1,6 @@
+---
+- name: copy a sorce file
+  copy:
+    src: /git
+    dest: /home/git
+...

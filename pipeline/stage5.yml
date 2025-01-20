@@ -1,0 +1,6 @@
+---
+- name: last stage
+  copy:
+    src: /git
+    dest: /home/git
+...

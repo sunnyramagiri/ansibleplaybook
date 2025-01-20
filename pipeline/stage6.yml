@@ -1,0 +1,13 @@
+---
+- name: pipeline cicd
+  hosts: all
+  tasks:
+    - name: call all pipeline cicd stages
+      include_tasks: "{{item}}"
+      with_items:
+        - stage1.yml
+        - stage2.yml
+        - stage3.yml
+        - stage4.yml
+        - stage5.yml
+...

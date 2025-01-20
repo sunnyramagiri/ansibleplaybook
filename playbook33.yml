@@ -1,0 +1,8 @@
+---
+- name: create files/dirs in users home dir
+  file:
+    name: "{{item.a}}"
+    state: "{{item.b}}"
+  with_items:
+    - {a: /home/sunmy/file300,b: touch}
+    - {a: /home/bunny/file350,b: touch}

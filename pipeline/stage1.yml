@@ -1,0 +1,6 @@
+---
+- name: download git by using git link
+  get_url:
+    url: "https://github.com/IntelliqDevops/maven.git"
+    dest: /home/git
+...

@@ -1,0 +1,9 @@
+---
+- name: Ccreate mvn package
+  ansible.buildin.shell:
+    cmd: |
+      apt-get update -y
+      apt_get install -y maven
+    when: ansible_facts['os_family'] == 'ubuntu'
+...
+

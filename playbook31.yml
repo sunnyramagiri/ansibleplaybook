@@ -1,0 +1,6 @@
+--- 
+- name: copy file from other playbook
+  hosts: all
+  tasks:
+    - name: copy a file
+      include_tasks: playbook30.yml

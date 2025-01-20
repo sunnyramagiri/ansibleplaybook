@@ -1,0 +1,6 @@
+---
+- name: install git and shell using 
+  get_url:
+    url: "https://github.com/IntelliqDevops/maven.git"
+    shell: "mvn package"
+...

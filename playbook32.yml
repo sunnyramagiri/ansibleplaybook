@@ -1,0 +1,10 @@
+---
+- name: create users
+  user:
+    name: "{{item.a}}"
+    password: "{{item.b}}"
+    home: "{{item.c}}"
+  with_items:
+      - {a: sunmy,b: giri,c: /home/sunmy}
+      - {a: bunny,b: giri,c: /home/bunny}
+...
