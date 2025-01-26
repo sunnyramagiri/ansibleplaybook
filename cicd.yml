@@ -1,0 +1,76 @@
+---
+- name: install required software on devserver
+  hosts: daveserver
+  tasks:
+    - name: install required software
+      apt:
+        name: "{{item.a}}"
+        state: "{{item.b}}"
+        update_cache: "{{item.c}}"
+      with_items:
+        - {a: git,b: present,c: yes}
+        - {a: openjdk-17-jdk,b: present,c: yes}
+        - {a: maven,b: present,c: yes}
+- name: install required software on QAserver
+  hosts: QAserver
+  tasks:
+    - name: intsall required software
+      apt:
+        name: "{{item.a}}"
+        state: "{{item.b}}"
+        update_cache: "{{item.c}}"
+      with_items:
+        - {a: git,b: present,c: yes}
+        - {a: openjdk-17-jdk,b: present,c: yes}
+        - {a: tomcat10,b: present,c: yes}
+        - {a: tomcat10-admin,b: present,c: yes}
+- name: install required software
+  hosts: prodserver
+  tasks:
+    - name: install software
+      apt:
+        name: "{{item.a}}"
+        state: "{{item.b}}"
+        update_cache: "{{item.c}}"
+      with_items:
+        - {a: tomcat10,b: present,c: yes}
+        - {a: tomcat10-admin,b: present,c: yes}
+- name: continuous downloads and continous build
+  hosts: daveserver
+  tasks:
+    - name: Download the development code for github
+      git:
+        repo: https://github.com/sunnyramagiri/maven.git
+        dest: dev-git
+    - name: craete artifact from the code
+      shell: cd dev-git;mvn package
+    - name: fetch the artifact to controlloer
+      fetch:
+        src: dev-git/webapp/target/webapp.war
+        dest: /tmp
+- name: continuous deploymewnt and continouos testing
+  hosts: QAserver
+  tasks:
+    - name: deploy artfat to tomcat on QAserver
+      copy:
+        src: /tmp/172.31.8.83/dev-git/webapp/target
+        dest: /var/lib/tomcat10/webapps/testappwar.war
+    - name: downloads the selenium scripts
+      git:
+        repo: https://github.com/IntelliqDevops/FunctionalTesting.git
+        dest: /test-git
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+...

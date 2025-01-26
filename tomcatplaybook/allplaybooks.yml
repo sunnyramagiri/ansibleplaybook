@@ -6,11 +6,4 @@
       include_tasks: "{{item}}"
       with_items:
         - install_tomcat.yml
-        - copy_tomcat_users.yml
-        - check_tomcst_responce.yml
-        - change_port.yml
-        - restart_tomcat.yml
-        - pause.yml
 ...
-
-
